@@ -13,10 +13,10 @@ namespace National_Park_API.Models
         [Required]
         public string Elevation { get; set; }
         public DateTime DateCreated { get; set; }
-        public enum Difficulty { Easy, Moderate, Difficult }
-        public Difficulty typeDifficult { get; set; }
+        public enum Difficultytype { Easy, Moderate, Difficult }
+        public Difficultytype Difficulty { get; set; }
         public int NationalParkId { get; set; }
         [ForeignKey("NationalParkId")]
-        public National_Park NationalPark { get; set; }
+        public NationalPark NationalPark { get; set; }
     }
 }
