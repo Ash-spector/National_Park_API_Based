@@ -17,6 +17,6 @@ namespace National_Park_API.Models
         public Difficultytype Difficulty { get; set; }
         public int NationalParkId { get; set; }
         [ForeignKey("NationalParkId")]
-        public NationalPark NationalPark { get; set; }
+        public National_Park NationalPark { get; set; }  
     }
 }

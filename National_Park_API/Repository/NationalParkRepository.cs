@@ -53,7 +53,7 @@ namespace National_Park_API.Repository
 
         public bool Save()
         {
-            return _context.SaveChanges() > 0;
+            return _context.SaveChanges() >0;
         }
     }
 }

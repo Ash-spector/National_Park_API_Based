@@ -6,7 +6,7 @@ using National_Park_API.Repository.IRepository;
 namespace National_Park_API.Repository
 {
     public class TrailRepository : ITrailRepository
-        { 
+    {
             private readonly ApplicationDbContext _context;
                 public TrailRepository(ApplicationDbContext context)
             {
@@ -27,7 +27,7 @@ namespace National_Park_API.Repository
 
             public Trail GetTrail(int trailId)
             {
-               throw new NotImplementedException();
+                return _context.Trails.Find(trailId);
             }
 
             public ICollection<Trail> GetTrails()
@@ -55,7 +55,8 @@ namespace National_Park_API.Repository
                 _context.Trails.Add(trail);
                 return Save();
             }
-        }
+        
     }
+}
 
 

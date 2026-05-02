@@ -6,6 +6,7 @@ namespace National_Park_API.Repository.IRepository
     {
         ICollection <National_Park> GetNationalParks();
         National_Park GetNationalPark(int nationalParkId);
+        bool NationalParkExists(int nationalParkId);
         bool NationalParkExists(string nationalparkname);
         bool CreateNationalPark(National_Park nationalPark);
         bool UpdateNationalPark(National_Park nationalPark);
