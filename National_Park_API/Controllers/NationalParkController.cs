@@ -60,31 +60,32 @@ namespace National_Park_API.Controllers
         {
             if (nationalParkDto == null) return BadRequest();
             if (!ModelState.IsValid) return BadRequest();
-
             var nationalPark = _mapper.Map<National_Park>(nationalParkDto);
-
+            if (!_nationalParkRepository.NationalParkExists(nationalPark.Id))
+                return NotFound();
             if (!_nationalParkRepository.UpdateNationalPark(nationalPark))
             {
                 ModelState.AddModelError("", "Something went wrong while update NP!! " + nationalPark.Name);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-
             return NoContent();
         }
+
         [HttpDelete("{nationalParkId:int}")]
-        public IActionResult DeleteNationalPark(int nationalparkId)
+        public IActionResult DeleteNationalPark(int nationalParkId)
         {
-            if (!_nationalParkRepository.NationalParkExists(nationalparkId))
+            if (!_nationalParkRepository.NationalParkExists(nationalParkId))
                 return NotFound();
-            var nationalPark = _nationalParkRepository.GetNationalPark(nationalparkId);
+
+            var nationalPark = _nationalParkRepository.GetNationalPark(nationalParkId);
 
             if (nationalPark == null) return NotFound();
+
             if (!_nationalParkRepository.DeleteNationalPark(nationalPark))
             {
                 ModelState.AddModelError("", "Something went wrong while deleting NP!! " + nationalPark.Name);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-
             return Ok();
         }
     }

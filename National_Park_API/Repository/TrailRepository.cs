@@ -50,9 +50,14 @@ namespace National_Park_API.Repository
                 return _context.Trails.Any(t => t.Id == trailId);
             }
 
-            public bool UpdateTrail(Trail trail)
+        public bool TrailExists(string trailName)
+        {
+            return _context.Trails.Any(t => t.Name == trailName);
+        }
+
+        public bool UpdateTrail(Trail trail)
             {
-                _context.Trails.Add(trail);
+                _context.Trails.Update(trail);
                 return Save();
             }
         

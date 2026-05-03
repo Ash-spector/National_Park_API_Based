@@ -12,7 +12,8 @@ namespace National_Park_API.Models.DTos
         public string Distance { get; set; }
         [Required]
         public string Elevation { get; set; }
-        public Difficultytype Difficulty { get; set; }
+        public Trail.Difficultytype Difficulty { get; set; }
+        public int NationalParkId { get; set; }       
         public NationalParkDto NationalPark { get; set; }
     }
 }

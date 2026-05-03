@@ -7,6 +7,7 @@ namespace National_Park_API.Repository.IRepository
         ICollection <Trail> GetTrails();
         Trail GetTrail(int trailId);
         bool TrailExists(int trailId);
+        bool TrailExists(string trailName);
         bool CreateTrail(Trail trail);
         bool UpdateTrail(Trail trail);
         bool DeleteTrail(Trail trail);
