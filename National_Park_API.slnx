@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="NationalParkWebApp/NationalParkWebApp.csproj" Id="f06d0a18-eec7-40e0-8a52-7a2727175905" />
   <Project Path="National_Park_API/National_Park_API.csproj" />
 </Solution>
