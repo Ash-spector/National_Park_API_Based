@@ -1,6 +1,8 @@
-﻿namespace NationalParkWebApp.Repository.IRepository
+﻿using NationalParkWebApp.Models;
+
+namespace NationalParkWebApp.Repository.IRepository
 {
-    public interface ITrailRepository
+    public interface ITrailRepository : IRepository<Trail>
     {
     }
 }

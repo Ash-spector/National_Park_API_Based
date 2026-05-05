@@ -1,8 +1,8 @@
-﻿using National_Park_API.Models;
+﻿using NationalParkWebApp.Models;
 
 namespace NationalParkWebApp.Repository.IRepository
 {
-    public interface INationalParkRepository :IRepository<National_Park>
+    public interface INationalParkRepository :IRepository<NationalPark>
     {
     }
 }
