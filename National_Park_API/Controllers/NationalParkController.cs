@@ -26,12 +26,15 @@ namespace National_Park_API.Controllers
             return Ok(nationalParkDtoList);
         }
         [HttpGet("{id:int}", Name = "GetNationalPark")]
-        public IActionResult GetNationalPark(int nationalparkid)
+        public IActionResult GetNationalPark(int id)
         {
-            var nationalPark = _nationalParkRepository.GetNationalPark(nationalparkid);
-            if (nationalPark == null) return NotFound();
+            var nationalPark = _nationalParkRepository.GetNationalPark(id);
+
+            if (nationalPark == null)
+                return NotFound();
 
             var nationalParkDto = _mapper.Map<NationalParkDto>(nationalPark);
+
             return Ok(nationalParkDto);
         }
         [HttpPost]

@@ -46,11 +46,20 @@
         <div class="col-8">
             <div class="form-group row p-2 m-2">
                 <div class="col-4">
-                    <label>Image</label>
+                    <label>Picture</label>
                 </div>
                 <div class="col-8">
                     <input type="file" name="files" id="imageId" class="form-control" />
                 </div>
+            </div>
+            <div class=" form-group row p-2 m-2">
+                    @{
+                        var dataEst = " ";
+                        if(Model.Id!=0)
+                        {
+                            dataEst = Model.Established.ToShortDateString();
+                        }
+                    }
             </div>
         </div>
 
@@ -60,7 +69,7 @@
                     <label asp-for="Established"></label>
                 </div>
                 <div class="col-8">
-                    <input type="text" id="datePicker" class="form-control" asp-for="Established" />
+                    <input type="text" value="datePicker" class="form-control" asp-for="Established" />
                     <span asp-validation-for="Established" class="text-danger"></span>
                 </div>
             </div>
@@ -72,10 +81,34 @@
                     <button type="submit" class="btn btn-primary form-control">@saveUpdate</button>
                 </div>
                 <div class="col-4">
-                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                    <a asp-action="Index" class="btn btn-success form-control"> 
+                        Back to List 
+                        </a>
                 </div>
+            </div>
+        </div>
+        <div class=" col-4">
+            <p> Image Display </p>
+            <div class=" col-4">
+                @if(Model.Picture !=null)
+                {
+                        var base64 = Convert.ToBase64String(Model.Picture);
+                    var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    <img src="@imgSrc" width="100%" />
+                        }
             </div>
         </div>
     </div>
 
 </form>
+@section Scripts 
+{
+	<script>
+		$(function () {
+			$("#datePicker").datepicker({
+				chnageMonth: true,
+				changeYear: true,
+			});
+		});
+	</script>
+}
