@@ -25,27 +25,28 @@ namespace National_Park_API.Repository
                 return Save();
             }
 
-            public Trail GetTrail(int trailId)
-            {
-                return _context.Trails.Find(trailId);
-            }
+        public Trail GetTrail(int trailId)
+        {
+            return _context.Trails.Include(t => t.NationalPark)
+                                  .FirstOrDefault(t => t.Id == trailId);
+        }
 
-            public ICollection<Trail> GetTrails()
-            {
-                return _context.Trails.ToList();
-            }
+        public ICollection<Trail> GetTrails()
+        {
+            return _context.Trails.Include(t => t.NationalPark).ToList();
+        }
 
-            public ICollection<Trail> GetTrailsInNationalPark(int nationalParkId)
+        public ICollection<Trail> GetTrailsInNationalPark(int nationalParkId)
             {
                 return _context.Trails.Include(t => t.NationalPark).Where(t => t.NationalParkId == nationalParkId).ToList();
             }
 
             public bool Save()
             {
-                return _context.SaveChanges() == 1 ? true : false;
-            }
+            return _context.SaveChanges() > 0;
+        }
 
-            public bool TrailExists(int trailId)
+        public bool TrailExists(int trailId)
             {
                 return _context.Trails.Any(t => t.Id == trailId);
             }

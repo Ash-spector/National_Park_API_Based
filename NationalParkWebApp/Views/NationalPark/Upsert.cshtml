@@ -19,7 +19,6 @@
             <h2 class="text-primary">@title</h2>
         </div>
 
-        <!-- Name -->
         <div class="col-8">
             <div class="form-group row p-2 m-2">
                 <div class="col-4">
@@ -69,8 +68,8 @@
                     <label asp-for="Established"></label>
                 </div>
                 <div class="col-8">
-                    <input type="text" value="datePicker" class="form-control" asp-for="Established" />
-                    <span asp-validation-for="Established" class="text-danger"></span>
+                    <input type="text" class="form-control" id="datePicker"
+                           asp-for="Established" value="@dataEst" />                    <span asp-validation-for="Established" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -94,7 +93,8 @@
                 {
                         var base64 = Convert.ToBase64String(Model.Picture);
                     var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-                    <img src="@imgSrc" width="100%" />
+                    @* <img src="@imgSrc" width="100%" /> *@
+                    <img src="@imgSrc" style="width:300px; height:auto;" />
                         }
             </div>
         </div>
@@ -106,7 +106,7 @@
 	<script>
 		$(function () {
 			$("#datePicker").datepicker({
-				chnageMonth: true,
+				changeMonth: true,
 				changeYear: true,
 			});
 		});

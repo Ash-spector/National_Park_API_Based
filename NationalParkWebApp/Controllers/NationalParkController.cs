@@ -73,7 +73,11 @@ namespace NationalParkWebApp.Controllers
                         nationalPark.Id
                     );
 
-                nationalPark.Picture = nationalParkInDb.Picture;
+                if (nationalParkInDb != null)
+                    nationalPark.Picture = nationalParkInDb.Picture;
+                else
+                    nationalPark.Picture = null;
+                //nationalPark.Picture = nationalParkInDb.Picture;
             }
 
             if (nationalPark.Id == 0)
@@ -101,9 +105,18 @@ namespace NationalParkWebApp.Controllers
         {
             return Json(new
             {
-                data = await _nationalParkRepository.GetAllAsync(
-                    SD.NationalParkAPIPath)
+                data = await _nationalParkRepository.GetAllAsync(SD.NationalParkAPIPath)
             });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _nationalParkRepository.DeleteAsync(SD.NationalParkAPIPath, id);
+            if (result == false)
+                return Json(new { success = false, message = "Unable to delete Data!!" });
+
+            return Json(new { success = true, message = "Deleted successfully" });
         }
 
         #endregion

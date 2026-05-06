@@ -28,19 +28,14 @@ namespace NationalParkWebApp.Repository
 
         public async Task<bool> DeleteAsync(string url, int id)
         {
-            {
-                var requests = new HttpRequestMessage(HttpMethod.Delete, url + "/" + id.ToString());
-              
-               
-                    var client = _httpClientFactory.CreateClient();
-                    HttpResponseMessage httpResponse = await client.SendAsync(requests);
-                    if (httpResponse.StatusCode == System.Net.HttpStatusCode.Created)
-
-                        return true;
-            }
-                return false;
+            var fullUrl = url.TrimEnd('/') + "/" + id.ToString();
+            var requests = new HttpRequestMessage(HttpMethod.Delete, fullUrl);
+            var client = _httpClientFactory.CreateClient();
+            HttpResponseMessage httpResponse = await client.SendAsync(requests);
+            if (httpResponse.StatusCode == System.Net.HttpStatusCode.NoContent)
+                return true;
+            return false;
         }
-        
 
         public async Task<IEnumerable<T>> GetAllAsync(string url)
         {
@@ -57,7 +52,8 @@ namespace NationalParkWebApp.Repository
 
         public async Task<T> GetAsync(string url, int id)
         {
-            var requests = new HttpRequestMessage(HttpMethod.Get, url + "/" + id.ToString());
+            var fullUrl = url.TrimEnd('/') + "/" + id.ToString();
+            var requests = new HttpRequestMessage(HttpMethod.Get, fullUrl);
             var client = _httpClientFactory.CreateClient();
             HttpResponseMessage httpResponse = await client.SendAsync(requests);
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.OK)

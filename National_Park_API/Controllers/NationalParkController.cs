@@ -89,7 +89,7 @@ namespace National_Park_API.Controllers
                 ModelState.AddModelError("", "Something went wrong while deleting NP!! " + nationalPark.Name);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
-            return Ok();
+            return NoContent();
         }
     }
 
