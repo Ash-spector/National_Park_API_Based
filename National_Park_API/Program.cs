@@ -16,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<INationalParkRepository, NationalParkRepository>();
 builder.Services.AddScoped<ITrailRepository, TrailRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 

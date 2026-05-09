@@ -12,5 +12,6 @@ namespace National_Park_API.Data
 
         public DbSet<National_Park> NationalParks { get; set; }
         public DbSet<Trail> Trails { get; set; }
+        public DbSet <User> Users { get; set; }
     }
 }

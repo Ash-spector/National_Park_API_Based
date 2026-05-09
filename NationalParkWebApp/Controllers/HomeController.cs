@@ -1,14 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
 using NationalParkWebApp.Models;
+using NationalParkWebApp.Models.ViewModels;
+using NationalParkWebApp.Repository.IRepository;
 using System.Diagnostics;
 
 namespace NationalParkWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly INationalParkRepository _nationalParkRepository;
+        private readonly ITrailRepository _trailRepository;
+
+        public HomeController(
+            INationalParkRepository nationalParkRepository,
+            ITrailRepository trailRepository)
         {
-            return View();
+            _trailRepository = trailRepository;
+            _nationalParkRepository = nationalParkRepository;
+        }
+       public async Task<IActionResult> Index()
+        {
+            IndexVM indexVM = new IndexVM()
+            {
+                NationalParkList = await _nationalParkRepository
+                    .GetAllAsync(SD.NationalParkAPIPath)
+            };
+
+            return View(indexVM);
         }
 
         public IActionResult Privacy()
